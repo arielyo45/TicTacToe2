@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="start_game">Start Game</string>
+    <string name="enter_player_two_name">Enter player two name</string>
+    <string name="enter_player_one_name">Enter player one name</string>
+    <string name="enter_n_players_names">ENTER \n PLAYERS NAMES</string>
+    <string name="player_one">Player One</string>
+    <string name="player_two">Player Two</string>
+    <string name="start_again">Start Again</string>
+    <string name="results">Results</string>
+    <string name="todo">TODO</string>
 </resources>
