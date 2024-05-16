@@ -1,37 +1,33 @@
 package com.isac.myapplication;
-
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import androidx.appcompat.app.AppCompatActivity;
 import com.isac.myapplication.databinding.ActivityMainBinding;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-
-
-
     private final List<int[]> combinationList = new ArrayList<>();
-    private int[] boxPositions = {0,0,0,0,0,0,0,0,0};
+    private int[] boxPositions = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //9 zero
     private int playerTurn = 1;
     private int totalSelectedBoxes = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        combinationList.add(new int[] {0,1,2});
-        combinationList.add(new int[] {3,4,5});
-        combinationList.add(new int[] {6,7,8});
-        combinationList.add(new int[] {0,3,6});
-        combinationList.add(new int[] {1,4,7});
-        combinationList.add(new int[] {2,5,8});
-        combinationList.add(new int[] {2,4,6});
-        combinationList.add(new int[] {0,4,8});
+        combinationList.add(new int[]{0, 1, 2});
+        combinationList.add(new int[]{3, 4, 5});
+        combinationList.add(new int[]{6, 7, 8});
+        combinationList.add(new int[]{0, 3, 6});
+        combinationList.add(new int[]{1, 4, 7});
+        combinationList.add(new int[]{2, 5, 8});
+        combinationList.add(new int[]{2, 4, 6});
+        combinationList.add(new int[]{0, 4, 8});
         String getPlayerOneName = getIntent().getStringExtra("playerOne");
         String getPlayerTwoName = getIntent().getStringExtra("playerTwo");
         binding.playerOneName.setText(getPlayerOneName);
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(0)){
+                if (isBoxSelectable(0)) {
                     performAction((ImageView) view, 0);
                 }
             }
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(1)){
+                if (isBoxSelectable(1)) {
                     performAction((ImageView) view, 1);
                 }
             }
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(2)){
+                if (isBoxSelectable(2)) {
                     performAction((ImageView) view, 2);
                 }
             }
@@ -63,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(3)){
+                if (isBoxSelectable(3)) {
                     performAction((ImageView) view, 3);
                 }
             }
@@ -71,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(4)){
+                if (isBoxSelectable(4)) {
                     performAction((ImageView) view, 4);
                 }
             }
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(5)){
+                if (isBoxSelectable(5)) {
                     performAction((ImageView) view, 5);
                 }
             }
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(6)){
+                if (isBoxSelectable(6)) {
                     performAction((ImageView) view, 6);
                 }
             }
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         binding.image8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(7)){
+                if (isBoxSelectable(7)) {
                     performAction((ImageView) view, 7);
                 }
             }
@@ -103,13 +99,14 @@ public class MainActivity extends AppCompatActivity {
         binding.image9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isBoxSelectable(8)){
+                if (isBoxSelectable(8)) {
                     performAction((ImageView) view, 8);
                 }
             }
         });
     }
-    private void performAction(ImageView  imageView, int selectedBoxPosition) {
+
+    private void performAction(ImageView imageView, int selectedBoxPosition) {
         boxPositions[selectedBoxPosition] = playerTurn;
         if (playerTurn == 1) {
             imageView.setImageResource(R.drawable.ximage);
@@ -118,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         + " is a Winner!", MainActivity.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-            } else if(totalSelectedBoxes == 9) {
+            } else if (totalSelectedBoxes == 9) {
                 ResultDialog resultDialog = new ResultDialog(MainActivity.this, "Match Draw", MainActivity.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
@@ -133,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         + " is a Winner!", MainActivity.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-            } else if(totalSelectedBoxes == 9) {
+            } else if (totalSelectedBoxes == 9) {
                 ResultDialog resultDialog = new ResultDialog(MainActivity.this, "Match Draw", MainActivity.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
@@ -143,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     private void changePlayerTurn(int currentPlayerTurn) {
         playerTurn = currentPlayerTurn;
         if (playerTurn == 1) {
@@ -153,9 +151,10 @@ public class MainActivity extends AppCompatActivity {
             binding.playerOneLayout.setBackgroundResource(R.drawable.white_box);
         }
     }
-    private boolean checkResults(){
+
+    private boolean checkResults() {
         boolean response = false;
-        for (int i = 0; i < combinationList.size(); i++){
+        for (int i = 0; i < combinationList.size(); i++) {
             final int[] combination = combinationList.get(i);
             if (boxPositions[combination[0]] == playerTurn && boxPositions[combination[1]] == playerTurn &&
                     boxPositions[combination[2]] == playerTurn) {
@@ -164,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return response;
     }
+
     private boolean isBoxSelectable(int boxPosition) {
         boolean response = false;
         if (boxPositions[boxPosition] == 0) {
@@ -171,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return response;
     }
-    public void restartMatch(){
-        boxPositions = new int[] {0,0,0,0,0,0,0,0,0}; //9 zero
+
+    public void restartMatch() {
+        boxPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0}; //9 zero
         playerTurn = 1;
         totalSelectedBoxes = 1;
         binding.image1.setImageResource(R.drawable.white_box);
@@ -186,4 +187,3 @@ public class MainActivity extends AppCompatActivity {
         binding.image9.setImageResource(R.drawable.white_box);
     }
 }
-
